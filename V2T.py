@@ -2,7 +2,11 @@
 #pip install SpeechRecognition
 #sudo apt-get install python-pyaudio python3-pyaudio
 
-
+from gtts import gTTS #pip install gTTS
+  
+# This module is imported so that we can  
+# play the converted audio 
+import os
 import random
 import speech_recognition as sr
 
@@ -59,10 +63,16 @@ if __name__ == "__main__":
     # create recognizer and mic instances
     recognizer = sr.Recognizer()
     microphone = sr.Microphone() #sr.Microphone.list_microphone_names() to get list of Microphone // sr.Microphone(device_index=3) to specify a microphone to use
+    language = 'en'
 
     word =recognize_speech_from_mic(recognizer, microphone)
     # show the user the transcription
     print("You said: {}".format(word["transcription"]))
 
-    if word["transcription"] == "text":
-        print(word["transcription"].lower())
+    #if word["transcription"] == "text":
+    text =" you said " + word["transcription"].lower()
+    myobj = gTTS(text=text, lang=language, slow=False) 
+    myobj.save("success.mp3") 
+  
+    # Playing the converted file 
+    os.system("mpg321 success.mp3")
