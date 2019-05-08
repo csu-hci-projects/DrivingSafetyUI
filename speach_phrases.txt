@@ -1,5 +1,0 @@
-Our system will recognize the following phrases
-1. Send text + text
-2. Call + name
-3. Play / Pause
-4. Volume Up / Volume Down
